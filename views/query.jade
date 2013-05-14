@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  if mysearch == ''
+    p.h1 There don't appear to be any results for "#{query}"
+    div.invalid
+      |Search again
+      form(action='/query', method='post')
+        input(type='textbox', name='search')
+        input(type='submit', value = 'Search')
+  else
+    p.h1 Search results for "#{query}"
+    for item in mysearch
+      div.item
+        include _post
+        if user != ' '
+          form(action='/', method='post')
+            input(type='hidden', value = item.id, name = 'itemid')
+            input(type='submit', value = 'reblog')
+      <br>
+

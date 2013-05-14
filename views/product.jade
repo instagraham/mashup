@@ -1,0 +1,8 @@
+extends layout
+
+block content
+  p.h1= item.name
+  div
+    include _post
+    form(action='/', method = 'post')
+      input(type='submit', value = 'Return')

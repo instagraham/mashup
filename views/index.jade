@@ -1,0 +1,53 @@
+extends layout
+
+block content
+  p.h1 #{title}
+
+  div.myaccount
+    if user == ' '
+      form(action='/', method ='post')
+        |Username
+        input(type='textbox', name='username')
+        <br>
+        |Password 
+        input(type='password',name='iwontusethis')
+        input(type='submit', value ='Login')
+    else
+      p.h2 My posts:
+      if !myposts
+        p None
+      else
+        <br>
+        for mypost in myposts
+          if mypost != null
+            a(href='/#{mypost.id}') #{mypost.name}
+            <br>
+      <br>
+      form(action='/logout', method='post')
+        input(type='hidden', name='username', value = ' ')
+        input(type='submit',value = 'Logout')
+
+  div
+      p Search by keyword
+      form(action='/query', method='post')
+        input(type='textbox', name='search')
+        input(type='submit', value = 'Search')
+
+  style
+
+    a {
+    font-size:16px;
+    }
+
+    .myaccount {
+    width:20%;
+    }
+
+    div {
+    display: inline-block;
+    }
+
+    p.h2 {
+    font-size:24px;
+    text-align:center;
+    }

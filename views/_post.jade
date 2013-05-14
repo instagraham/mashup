@@ -1,0 +1,15 @@
+p #{item.name}
+p Cost: $#{item.cost}
+p Description: #{item.info}
+p Keywords:
+for kword in item.keywords
+    form(action='/query', method='post')
+      input(type='hidden', value = kword, name = 'search')
+      input(type='submit', value=kword)
+p Rating: #{item.rating}
+p Comments: 
+if item.comments.length == 0
+  p None
+else  
+  for comment in item.comments
+    p #{comment}
